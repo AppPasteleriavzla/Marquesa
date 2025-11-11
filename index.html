@@ -1,87 +1,329 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Obtén tu Guía de Marquesas por WhatsApp</title>
+  <title>Negocio de Marquesas: Tu Primera Ganancia en 7 Días</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #ffede1, #fff);
-      color: #333;
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fff5f0 0%, #fff 50%, #fff9f5 100%);
+      color: #2d3748;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    .hero-section {
+      background: linear-gradient(135deg, #d35400 0%, #e67e22 100%);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+    }
+    
+    .hero-section::before {
+      content: "🍰";
+      position: absolute;
+      font-size: 200px;
+      opacity: 0.08;
+      top: -50px;
+      right: -50px;
+      transform: rotate(-15deg);
+    }
+    
     .container {
-      max-width: 500px;
-      margin: 60px auto;
+      max-width: 600px;
+      margin: -30px auto 40px;
       background: #fff;
-      padding: 40px;
-      border-radius: 16px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(211, 84, 0, 0.15);
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .header-content {
+      padding: 40px 30px 30px;
       text-align: center;
     }
+    
+    .profit-badge {
+      background: linear-gradient(135deg, #27ae60, #2ecc71);
+      color: white;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 18px;
+      display: inline-block;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(39, 174, 96, 0.3);
+    }
+    
     h1 {
+      font-size: 32px;
+      color: #d35400;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    
+    .subtitle {
+      font-size: 18px;
+      color: #7f8c8d;
+      margin-bottom: 25px;
+    }
+    
+    .guide-preview {
+      background: #fef5e7;
+      border: 2px dashed #f39c12;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 25px 0;
+      text-align: center;
+    }
+    
+    .guide-preview img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+      padding: 0 30px;
+      margin-bottom: 30px;
+    }
+    
+    .benefit-item {
+      background: #fff;
+      border-left: 4px solid #25d366;
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+    }
+    
+    .benefit-icon {
       font-size: 24px;
+      margin-right: 15px;
+    }
+    
+    .urgency-box {
+      background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+      border: 1px solid #f39c12;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 25px 30px;
+      text-align: center;
+    }
+    
+    .urgency-box .timer {
+      font-size: 24px;
+      font-weight: 700;
       color: #d35400;
     }
-    p {
-      margin-bottom: 20px;
+    
+    .form-container {
+      padding: 0 30px 40px;
     }
+    
     input {
-      width: 90%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      width: 100%;
+      padding: 16px;
+      margin: 12px 0;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
       font-size: 16px;
+      transition: all 0.3s;
+      font-family: 'Poppins', sans-serif;
     }
+    
+    input:focus {
+      outline: none;
+      border-color: #25d366;
+      box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.2);
+    }
+    
     button {
-      background-color: #25d366;
+      width: 100%;
+      background: linear-gradient(135deg, #25d366, #20b857);
       color: white;
       border: none;
-      padding: 14px 30px;
-      font-size: 18px;
-      border-radius: 10px;
+      padding: 18px;
+      font-size: 20px;
+      font-weight: 700;
+      border-radius: 12px;
       cursor: pointer;
-      transition: 0.3s;
+      transition: all 0.3s;
+      box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+      position: relative;
+      overflow: hidden;
     }
+    
     button:hover {
-      background-color: #20b857;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
     }
+    
+    button::after {
+      content: "📲";
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 24px;
+    }
+    
+    .security-text {
+      font-size: 12px;
+      color: #95a5a6;
+      text-align: center;
+      margin-top: 15px;
+    }
+    
     .success {
-      background-color: #eafbea;
-      color: #2e7d32;
-      padding: 10px;
-      border-radius: 6px;
-      margin-top: 10px;
+      background: #d5f4e6;
+      color: #27ae60;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
       display: none;
+      font-weight: 600;
+      text-align: center;
+    }
+    
+    .footer-note {
+      background: #f8f9fa;
+      padding: 20px 30px;
+      border-top: 1px solid #e0e0e0;
+      font-size: 14px;
+      color: #7f8c8d;
+    }
+    
+    @media (max-width: 600px) {
+      .container {
+        margin: 0 auto;
+        border-radius: 0;
+      }
+      h1 {
+        font-size: 26px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>🎁 Obtén tu Guía Rápida Gratis</h1>
-    <p>Aprende cómo iniciar tu negocio de <strong>Marquesas Rentables en 7 días</strong> y genera hasta <strong>Bs660 semanales</strong> con el postre perfecto 🍰</p>
-
-    <form id="leadForm">
-      <input type="text" id="name" placeholder="Tu nombre" required><br>
-      <input type="tel" id="phone" placeholder="Tu número de WhatsApp (ej. 5917xxxxxxx)" required><br>
-      <button type="submit">📲 Obtener Guía por WhatsApp</button>
-    </form>
-
-    <div class="success" id="successMsg">¡Gracias! Redirigiendo a tu WhatsApp...</div>
+  <!-- SECCIÓN HERO -->
+  <div class="hero-section">
+    <h1 style="font-size: 36px; margin-bottom: 10px;">🍰 TU NEGOCIO DE MARQUESAS</h1>
+    <p style="font-size: 20px; opacity: 0.9;">Genera hasta <strong>Bs660 semanales</strong> desde tu cocina</p>
   </div>
 
+  <div class="container">
+    
+    <!-- HEADER -->
+    <div class="header-content">
+      <div class="profit-badge">💰 MARGEN DE GANANCIA: 300%</div>
+      
+      <h1>La Guía Rápida para Iniciar en 7 Días</h1>
+      
+      <p class="subtitle">
+        **Receta Base Maestra + 2 Recetas de Lanzamiento + Plan de Negocio**  
+        *El postre perfecto para emprendedoras serias que quieren resultados reales*
+      </p>
+      
+      <!-- ESPACIO PARA IMAGEN DE PORTADA DE LA GUÍA -->
+      <div class="guide-preview">
+        <p style="color: #d35400; font-weight: 600; margin-bottom: 15px;">📥 MIRA LO QUE RECIBIRÁS GRATIS:</p>
+        <!-- **INSERTA AQUÍ LA IMAGEN DE TU GUÍA EN PDF** -->
+        <!-- <img src="ruta/a/tu/guia-gratis.jpg" alt="Vista previa de la Guía de Marquesas"> -->
+        <div style="background: #fff; padding: 30px; border-radius: 8px; border: 1px solid #ddd;">
+          <p style="color: #e74c3c; font-size: 16px;">⬆️ [SUBE TU IMAGEN DE LA GUÍA AQUÍ]</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BENEFICIOS -->
+    <div class="benefits-grid">
+      <div class="benefit-item">
+        <span class="benefit-icon">🚀</span>
+        <div>
+          <strong>Inversión Mínima:</strong> Menos de Bs50 para tu primera producción
+        </div>
+      </div>
+      <div class="benefit-item">
+        <span class="benefit-icon">⚡</span>
+        <div>
+          <strong>Producción Rápida:</strong> Prepara 20 unidades en menos de 2 horas
+        </div>
+      </div>
+      <div class="benefit-item">
+        <span class="benefit-icon">📈</span>
+        <div>
+          <strong>Escalable:</strong> De 10 a 100 unidades/día sin complejidad
+        </div>
+      </div>
+      <div class="benefit-item">
+        <span class="benefit-icon">🎯</span>
+        <div>
+          <strong>Demanda Garantizada:</strong> Postre de alto consumo en cualquier temporada
+        </div>
+      </div>
+    </div>
+
+    <!-- URGENCIA -->
+    <div class="urgency-box">
+      <p style="margin-bottom: 10px; font-weight: 600;">⚠️ ESTA GUÍA GRATUITA ESTÁ DISPONIBLE POR TIEMPO LIMITADO</p>
+      <p>Próximamente solo con el Recetario Completo ($10 USD)</p>
+    </div>
+
+    <!-- FORMULARIO -->
+    <div class="form-container">
+      <form id="leadForm">
+        <input type="text" id="name" placeholder="📝 Tu nombre completo" required>
+        <input type="tel" id="phone" placeholder="📱 WhatsApp (ej: 5917xxxxxxx)" required>
+        
+        <button type="submit">
+          OBTENER GUÍA GRATIS POR WHATSAPP
+        </button>
+        
+        <p class="security-text">
+          🔒 Tu información es 100% segura. Solo usaremos tu WhatsApp para enviarte la guía
+        </p>
+        
+        <div class="success" id="successMsg">
+          ✅ ¡Éxito! Revisando tu WhatsApp en 3, 2, 1...
+        </div>
+      </form>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-note">
+      <strong>¿Qué pasa después?</strong><br>
+      1. Recibes la Guía Rápida al instante<br>
+      2. Preparas tus primeras 10 unidades<br>
+      3. Te presento el Recetario Completo de 30 sabores para multiplicar tus ganancias
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT (TU CÓDIGO ORIGINAL) -->
   <script>
     // CONFIGURACIÓN DE SUPABASE
     const SUPABASE_URL = "https://lzflauyqlenzmbjjapau.supabase.co";
     const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx6ZmxhdXlxbGVuem1iamphcGF1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI0NzkyODAsImV4cCI6MjA3ODA1NTI4MH0.9D57DTEmSTUBBkYm9BWGV0yYQgQ6zX89y4iVIYSo7zk";
-    const WHATSAPP_NUMBER = "584128939324"; // tu número de WhatsApp
+    const WHATSAPP_NUMBER = "584128939324";
     const WHATSAPP_MESSAGE = "Hola! Quiero recibir la Guía Rápida para iniciar mi negocio de Marquesas 🍰";
 
-    // Inicializar Supabase (sin librería externa)
     async function insertLead(name, phone) {
       const res = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
         method: 'POST',
@@ -91,7 +333,12 @@
           'Authorization': `Bearer ${SUPABASE_KEY}`,
           'Prefer': 'return=minimal'
         },
-        body: JSON.stringify({ name, phone })
+        body: JSON.stringify({ 
+          name, 
+          phone,
+          created_at: new Date().toISOString(),
+          source: 'landing_marquesas_profesional'
+        })
       });
       return res.ok;
     }
@@ -102,26 +349,26 @@
       const phone = document.getElementById("phone").value.trim();
       const msgBox = document.getElementById("successMsg");
 
-      if(!name || !phone) return alert("Por favor, completa todos los campos");
+      if(!name || !phone) return alert("⚠️ Por favor, completa todos los campos");
 
-      // Guardar lead
+      // Validación de formato de teléfono
+      if(phone.length < 10) return alert("📱 Ingresa un número de WhatsApp válido");
+
       const success = await insertLead(name, phone);
       if (success) {
         msgBox.style.display = 'block';
-        // Enviar evento pixel si está disponible
         if (typeof fbq !== 'undefined') fbq('track', 'Lead');
-        // Redirigir a WhatsApp
+        
         const waURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
-        setTimeout(() => window.location.href = waURL, 1200);
+        setTimeout(() => window.location.href = waURL, 1500);
       } else {
-        alert("Hubo un error al guardar tus datos. Intenta nuevamente.");
+        alert("❌ Hubo un error. Intenta nuevamente o escribe directamente al WhatsApp.");
       }
     });
   </script>
 
-  <!-- OPCIONAL: PIXEL DE META -->
+  <!-- PIXEL DE META -->
   <script>
-    // Reemplaza TU_PIXEL_ID con el tuyo
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -136,4 +383,3 @@
 
 </body>
 </html>
-
