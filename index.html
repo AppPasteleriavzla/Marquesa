@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Obtén tu Guía de Marquesas por WhatsApp</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffede1, #fff);
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 500px;
+      margin: 60px auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h1 {
+      font-size: 24px;
+      color: #d35400;
+    }
+    p {
+      margin-bottom: 20px;
+    }
+    input {
+      width: 90%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #25d366;
+      color: white;
+      border: none;
+      padding: 14px 30px;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #20b857;
+    }
+    .success {
+      background-color: #eafbea;
+      color: #2e7d32;
+      padding: 10px;
+      border-radius: 6px;
+      margin-top: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🎁 Obtén tu Guía Rápida Gratis</h1>
+    <p>Aprende cómo iniciar tu negocio de <strong>Marquesas Rentables en 7 días</strong> y genera hasta <strong>Bs660 semanales</strong> con el postre perfecto 🍰</p>
+
+    <form id="leadForm">
+      <input type="text" id="name" placeholder="Tu nombre" required><br>
+      <input type="tel" id="phone" placeholder="Tu número de WhatsApp (ej. 5917xxxxxxx)" required><br>
+      <button type="submit">📲 Obtener Guía por WhatsApp</button>
+    </form>
+
+    <div class="success" id="successMsg">¡Gracias! Redirigiendo a tu WhatsApp...</div>
+  </div>
+
+  <script>
+    // CONFIGURACIÓN DE SUPABASE
+    const SUPABASE_URL = "https://TU_PROYECTO.supabase.co";
+    const SUPABASE_KEY = "TU_PUBLIC_ANON_KEY";
+    const WHATSAPP_NUMBER = "5917XXXXXXXX"; // tu número de WhatsApp
+    const WHATSAPP_MESSAGE = "Hola! Quiero recibir la Guía Rápida para iniciar mi negocio de Marquesas 🍰";
+
+    // Inicializar Supabase (sin librería externa)
+    async function insertLead(name, phone) {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({ name, phone })
+      });
+      return res.ok;
+    }
+
+    document.getElementById("leadForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const msgBox = document.getElementById("successMsg");
+
+      if(!name || !phone) return alert("Por favor, completa todos los campos");
+
+      // Guardar lead
+      const success = await insertLead(name, phone);
+      if (success) {
+        msgBox.style.display = 'block';
+        // Enviar evento pixel si está disponible
+        if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+        // Redirigir a WhatsApp
+        const waURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+        setTimeout(() => window.location.href = waURL, 1200);
+      } else {
+        alert("Hubo un error al guardar tus datos. Intenta nuevamente.");
+      }
+    });
+  </script>
+
+  <!-- OPCIONAL: PIXEL DE META -->
+  <script>
+    // Reemplaza TU_PIXEL_ID con el tuyo
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'TU_PIXEL_ID');
+    fbq('track', 'PageView');
+  </script>
+
+</body>
+</html>
