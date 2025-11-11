@@ -12,10 +12,6 @@
       box-sizing: border-box;
     }
     
-    html {
-      scroll-behavior: smooth; /* Desplazamiento suave */
-    }
-    
     body {
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #fff5f0 0%, #fff 50%, #fff9f5 100%);
@@ -97,27 +93,6 @@
       height: auto;
       border-radius: 8px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    
-    .cta-button {
-      background: linear-gradient(135deg, #e67e22, #d35400);
-      color: white;
-      border: none;
-      padding: 14px 25px;
-      font-size: 16px;
-      font-weight: 600;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s;
-      box-shadow: 0 4px 10px rgba(211, 84, 0, 0.3);
-      display: inline-block;
-      margin-top: 15px;
-      text-decoration: none;
-    }
-    
-    .cta-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 15px rgba(211, 84, 0, 0.4);
     }
     
     .benefits-grid {
@@ -327,6 +302,29 @@
       color: #7f8c8d;
     }
     
+    /* --- CSS AÑADIDO PARA EL BOTÓN DE SCROLL --- */
+    .cta-scroll {
+      display: inline-block;
+      background: linear-gradient(135deg, #25d366, #20b857);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
+      text-decoration: none;
+      margin-top: 20px;
+    }
+    
+    .cta-scroll:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(37, 211, 102, 0.3);
+    }
+    /* --- FIN DE CSS AÑADIDO --- */
+    
     @media (max-width: 600px) {
       .container {
         margin: 0 auto;
@@ -347,7 +345,6 @@
 </head>
 <body>
 
-  <!-- SECCIÓN HERO -->
   <div class="hero-section">
     <h1 style="font-size: 36px; margin-bottom: 10px;">🍰 TU NEGOCIO DE MARQUESAS</h1>
     <p style="font-size: 20px; opacity: 0.9;">Genera hasta <strong>Bs660 semanales</strong> desde tu cocina</p>
@@ -355,32 +352,29 @@
 
   <div class="container">
     
-    <!-- HEADER -->
     <div class="header-content">
       <div class="profit-badge">💰 MARGEN DE GANANCIA: 300%</div>
       
       <h1>La Guía Rápida para Iniciar en 7 Días</h1>
       
       <p class="subtitle">
-        **Receta Base Maestra + 2 Recetas de Lanzamiento + Plan de Negocio**  
-        *El postre perfecto para emprendedoras serias que quieren resultados reales*
+        **Receta Base Maestra + 2 Recetas de Lanzamiento + Plan de Negocio** *El postre perfecto para emprendedoras serias que quieren resultados reales*
       </p>
       
-      <!-- ESPACIO PARA IMAGEN DEL EBOOK -->
       <div class="guide-preview">
         <p style="color: #d35400; font-weight: 600; margin-bottom: 15px;">📥 MIRA LO QUE RECIBIRÁS GRATIS:</p>
-        <!-- **COLOCA AQUÍ LA IMAGEN DE TU EBOOK/Guía en formato JPG/PNG** -->
-        <!-- **IMPORTANTE: Reemplaza la URL de abajo con la imagen real de tu guía ** -->
         <img src="https://d1yei2z3i6k35z.cloudfront.net/1499825/6913429bad7d7_Dise%C3%B1osint%C3%ADtulo.png" alt="Vista previa de la Guía de Marquesas - 7 Días al Éxito">
+        
         <p style="font-size: 14px; color: #7f8c8d; margin-top: 10px;">
           Guía completa en formato digital - 6 páginas llena de información valiosa
         </p>
-        <!-- BOTÓN NUEVO PARA BAJAR AL FORMULARIO -->
-        <a href="#form-section" class="cta-button">OBTENER GUÍA GRATIS AHORA</a>
+        
+        <a href="#leadForm" id="scrollToFormBtn" class="cta-scroll">
+          👇 ¡LA QUIERO AHORA! 👇
+        </a>
       </div>
     </div>
 
-    <!-- BENEFICIOS -->
     <div class="benefits-grid">
       <div class="benefit-item">
         <span class="benefit-icon">🚀</span>
@@ -408,13 +402,11 @@
       </div>
     </div>
 
-    <!-- URGENCIA -->
     <div class="urgency-box">
       <p style="margin-bottom: 10px; font-weight: 600;">⚠️ ESTA GUÍA GRATUITA ESTÁ DISPONIBLE POR TIEMPO LIMITADO</p>
       <p>Próximamente solo con el Recetario Completo ($10 USD)</p>
     </div>
 
-    <!-- === SECCIÓN DE TESTIMONIOS CON IMÁGENES DE PERFIL (FICTICIOS) === -->
     <div class="testimonials-section">
       <h2 class="section-title">🌟 RESULTADOS REALES DE EMPRENDEDORAS</h2>
       
@@ -452,7 +444,6 @@
       </div>
     </div>
 
-    <!-- === SECCIÓN DE PRUEBAS REALES (CAPTURAS DE WHATSAPP) === -->
     <div class="real-proof-section">
       <h2 class="section-title">📱 MENSAJES DE CLIENTES SATISFECHOS</h2>
       <p style="text-align: center; color: #7f8c8d; margin-bottom: 20px;">
@@ -497,8 +488,7 @@
       </div>
     </div>
 
-    <!-- FORMULARIO -->
-    <div class="form-container" id="form-section">
+    <div class="form-container">
       <form id="leadForm">
         <input type="text" id="name" placeholder="📝 Tu nombre completo" required>
         <input type="tel" id="phone" placeholder="📱 WhatsApp (ej: 5917xxxxxxx)" required>
@@ -517,7 +507,6 @@
       </form>
     </div>
 
-    <!-- FOOTER -->
     <div class="footer-note">
       <strong>¿Qué pasa después?</strong><br>
       1. Recibes la Guía Rápida al instante<br>
@@ -526,7 +515,6 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT (TU CÓDIGO ORIGINAL) -->
   <script>
     // CONFIGURACIÓN DE SUPABASE
     const SUPABASE_URL = "https://lzflauyqlenzmbjjapau.supabase.co";
@@ -575,9 +563,18 @@
         alert("❌ Hubo un error. Intenta nuevamente o escribe directamente al WhatsApp.");
       }
     });
+
+    // --- CÓDIGO AÑADIDO PARA SCROLL SUAVE ---
+    document.getElementById("scrollToFormBtn").addEventListener("click", function(e) {
+      e.preventDefault(); // Prevenir el salto brusco del anchor
+      document.getElementById("leadForm").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    });
+    // --- FIN DE CÓDIGO AÑADIDO ---
   </script>
 
-  <!-- PIXEL DE META -->
   <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
