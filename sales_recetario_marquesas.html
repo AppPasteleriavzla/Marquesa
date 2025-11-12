@@ -416,10 +416,8 @@
   <header>
     <div class="container">
       <div class="logo">Recetario Premium Bolivia</div>
-    
-    </div>
+      </div>
   </header>
-
   <section class="hero">
     <div class="container">
       <div class="hero-content fade-in">
@@ -618,16 +616,11 @@
       </p>
       <div style="max-width: 400px; margin: 0 auto;">
         <button class="btn btn-primary" id="buyBtnFinal" style="margin-bottom: 12px;">
-          SÍ, QUIERO EL SISTEMA COMPLETO POR Bs 350
+          SÍ, QUIERO EL SISTEMA POR Bs 350 (PAGAR POR WHATSAPP)
         </button>
-        <button class="btn btn-secondary" id="waBtn">Prefiero pagar por WhatsApp</button>
+        </div>
       </div>
-      <p style="font-size: 0.75rem; margin-top: 1rem; color: var(--text-light);">
-        Pago seguro CON SISTEMA QR DE YAPE O BNB 
-      </p>
-    </div>
   </section>
-
   <footer>
     <div class="container">
       <p>2025 Recetario Marquesas Bolivia. Todos los derechos reservados.</p>
@@ -740,7 +733,7 @@
   <script>
     /* ===== CONFIGURACIÓN BOLIVIA (NÚMERO ACTUALIZADO) ===== */
     const CONFIG = {
-      checkoutUrl: 'https://tu-checkout-en-systeme.io/tu-producto',
+      checkoutUrl: 'https://api.whatsapp.com/send/?phone=584128939324&text=Hola%2C+vi+la+p%C3%A1gina+del+Sistema+de+Marquesas+y+tengo+una+pregunta.&type=phone_number&app_absent=0',
       whatsappNumber: '584128939324', // NÚMERO ACTUALIZADO
       whatsappMessage: 'Hola, vi la página del Sistema de Marquesas y tengo una pregunta.' // MENSAJE ACTUALIZADO
     };
@@ -754,23 +747,25 @@
       if (btn) btn.addEventListener('click', callback);
     }
 
-    // Botones de compra
-    setupButton('buyBtn', () => {
-      trackEvent('InitiateCheckout', { value: 35, currency: 'BOB' });
-      window.location.href = CONFIG.checkoutUrl;
-    });
-    setupButton('buyBtnFinal', () => {
-      trackEvent('InitiateCheckout', { value: 35, currency: 'BOB' });
-      window.location.href = CONFIG.checkoutUrl;
-    });
-
-    // WhatsApp
+    // WhatsApp (función central)
     function openWhatsApp() {
       const url = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(CONFIG.whatsappMessage)}`;
       trackEvent('Contact', { method: 'WhatsApp' });
       window.open(url, '_blank');
     }
-    setupButton('waBtn', openWhatsApp);
+
+    // Botones de compra
+    setupButton('buyBtn', () => { // Botón del HERO - va al checkout
+      trackEvent('InitiateCheckout', { value: 35, currency: 'BOB' });
+      window.location.href = CONFIG.checkoutUrl;
+    });
+    
+    // ***** JAVASCRIPT MODIFICADO *****
+    // Botón FINAL - ahora va a WhatsApp
+    setupButton('buyBtnFinal', openWhatsApp); 
+    // ***** FIN DE LA MODIFICACIÓN *****
+
+    // Botón flotante de WhatsApp
     setupButton('waFloat', (e) => { e.preventDefault(); openWhatsApp(); });
 
     
@@ -825,8 +820,8 @@
         whatYouLoseText.innerHTML = `Cada semana sin este sistema son <strong>Bs 1.500-2.000</strong> que dejas de ganar. 
           La oferta de <strong>Bs 35</strong> desaparece en 24 horas. El precio vuelve a <strong>Bs 350</strong>.`;
 
-        // 5. Cambiar botón CTA final
-        finalCtaButton.innerHTML = 'SÍ, QUIERO EL SISTEMA COMPLETO POR Bs 35';
+        // 5. ***** TEXTO DEL BOTÓN FINAL MODIFICADO *****
+        finalCtaButton.innerHTML = 'SÍ, QUIERO EL SISTEMA POR Bs 35 (PAGAR POR WHATSAPP)';
         
         // Opcional: Mostrar éxito y cerrar
         modalError.style.display = 'none';
