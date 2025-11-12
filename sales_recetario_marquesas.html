@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -6,7 +6,6 @@
   <title>30 Recetas de Marquesa | Sistema Único para Vender en Bolivia</title>
   <meta name="description" content="Sistema completo: 1 receta base maestra = 30 sabores probados. Haz tu negocio de marquesas en Bolivia sin horno, desde tu cocina.">
   
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -39,6 +38,7 @@
     h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; line-height: 1.2; }
     h1 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
     h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); margin-bottom: 1.5rem; }
+    h3 { font-family: 'Playfair Display', serif; font-size: 1.75rem; color: var(--primary-dark); margin-bottom: 1rem; }
     p { color: var(--text-light); margin-bottom: 1rem; }
 
     .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
@@ -236,6 +236,180 @@
       to { opacity: 1; transform: translateY(0); }
     }
     .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+
+    /* ===== ESTILOS DEL MODAL (Genérico) ===== */
+    .modal-overlay {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
+      z-index: 2000;
+      opacity: 0; visibility: hidden;
+      transition: var(--transition);
+    }
+    .modal-content {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      background: var(--bg);
+      padding: 32px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-hover);
+      z-index: 2001;
+      width: 90%;
+      opacity: 0; visibility: hidden;
+      transition: var(--transition);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-overlay.visible,
+    .modal-content.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal-content.visible {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .modal-close {
+      position: absolute;
+      top: 10px; right: 20px;
+      font-size: 2.5rem;
+      color: var(--text-light);
+      text-decoration: none;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 10; /* Asegura que esté sobre los botones */
+    }
+    .modal-close:hover { color: var(--text); }
+    
+    /* ===== ESTILOS MODAL PROMOCIONAL (Específico) ===== */
+    .modal-content-promo {
+      max-width: 500px;
+      text-align: center;
+      padding: 40px;
+    }
+    .modal-form {
+      display: flex; flex-direction: column;
+      gap: 12px; margin: 24px 0;
+    }
+    .modal-form input {
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .modal-form input::placeholder { color: #ccc; }
+    .modal-form input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.2);
+    }
+    .modal-error-msg {
+      color: #c0392b; /* Rojo */
+      font-size: 0.875rem;
+      margin-top: -12px;
+      margin-bottom: 1rem;
+    }
+    
+    /* ===== ESTILOS MODAL PLAN 7 DÍAS (ACTUALIZADO) ===== */
+    .modal-content-plan {
+      max-width: 700px; /* Más ancho para el plan */
+      text-align: left;
+    }
+    /* --- NUEVOS ESTILOS PARA BOTONES DE ACCIÓN --- */
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+      /* Ajuste para que no se solape con el botón de cerrar */
+      padding-right: 40px; 
+    }
+    .btn-action {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      color: var(--primary);
+      padding: 8px 12px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      transition: var(--transition);
+    }
+    .btn-action:hover {
+      background: var(--primary);
+      color: white;
+    }
+    /* --- FIN NUEVOS ESTILOS --- */
+    .plan-dia {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .plan-dia:last-child {
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+    .plan-dia strong {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary);
+      font-size: 1.25rem;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .plan-dia ul {
+      padding-left: 20px;
+      color: var(--text-light);
+    }
+    .plan-dia li {
+      margin-bottom: 6px;
+    }
+    
+    /* --- NUEVOS ESTILOS DE IMPRESIÓN --- */
+    @media print {
+      body * {
+        visibility: hidden; /* Oculta todo por defecto */
+      }
+      #plan-content-wrapper, #plan-content-wrapper * {
+        visibility: visible; /* Muestra solo el contenido del plan */
+      }
+      #plan-content-wrapper {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        padding: 20px;
+        box-shadow: none;
+        border: none;
+        color: #000; /* Asegura texto negro en impresión */
+      }
+      .modal-actions, .modal-close {
+        display: none !important; /* Oculta botones de acción y cierre */
+      }
+      .plan-dia {
+        border-bottom: 1px solid #ccc;
+        page-break-inside: avoid; /* Evita cortes a mitad de día */
+      }
+      .plan-dia strong, h3 {
+        color: var(--primary-dark); /* Color más oscuro para imprimir */
+      }
+      h3, p {
+        text-align: left !important;
+      }
+      ul, li {
+        color: #333;
+      }
+      a {
+        text-decoration: none;
+        color: #000;
+      }
+    }
   </style>
 </head>
 <body>
@@ -258,21 +432,21 @@
           desde su cocina.
         </p>
 
-        <div class="scarcity-box">
-          <strong>⏳ OFERTA DE LANZAMIENTO EN BOLIVIA:</strong> Solo hoy <strong>$3 USD (Bs 35)</strong> 
-          en lugar de $25 USD (Bs 172). El precio vuelve a subir mañana.
+        <div class="scarcity-box" id="scarcityText">
+          <strong>⏳ OFERTA DE LANZAMIENTO EN BOLIVIA:</strong>
+          Precio regular <strong>Bs 350</strong>. ¡Busca el código de descuento!
         </div>
 
         <div class="price-wrapper">
-          <span class="price">Bs 35</span>
-          <span class="price-original"><del>Bs 172</del></span>
+          <span class="price" id="mainPrice">Bs 350</span>
+          <span class="price-original" id="originalPrice" style="display: none;"><del>Bs 350</del></span>
         </div>
         <p style="font-size: 0.875rem; margin-top: -0.5rem; margin-bottom: 2rem;">
           Acceso inmediato • 7 días de garantía
         </p>
 
         <button class="btn btn-primary" id="buyBtn">OBTENER SISTEMA COMPLETO AHORA</button>
-        <button class="btn btn-secondary" id="previewBtn">Ver muestra del PDF</button>
+        <button class="btn btn-secondary" id="planBtn">Ver estructura de los 7 días</button>
       </div>
     </div>
   </section>
@@ -296,7 +470,6 @@
     </div>
   </section>
 
-  <!-- ===== CARRUSEL DE IMÁGENES NUEVO ===== -->
   <section class="carousel-section">
     <div class="container">
       <h2 style="text-align: center; margin-bottom: 2rem;">Así se ven las marquesas que harás</h2>
@@ -441,13 +614,13 @@
   <section class="section" style="background: var(--bg-soft); text-align: center;">
     <div class="container">
       <h2 style="margin-bottom: 1rem;">¿Qué perderías si no empiezas hoy?</h2>
-      <p style="max-width: 600px; margin: 0 auto 2rem;">
+      <p style="max-width: 600px; margin: 0 auto 2rem;" id="whatYouLoseText">
         Cada semana sin este sistema son <strong>Bs 1.500-2.000</strong> que dejas de ganar. 
-        La oferta de <strong>Bs 35</strong> desaparece en 24 horas. El precio vuelve a <strong>Bs 172</strong>.
+        El precio regular es de <strong>Bs 350</strong>. ¡Aplica el código de descuento!
       </p>
       <div style="max-width: 400px; margin: 0 auto;">
         <button class="btn btn-primary" id="buyBtnFinal" style="margin-bottom: 12px;">
-          SÍ, QUIERO EL SISTEMA COMPLETO POR Bs 35
+          SÍ, QUIERO EL SISTEMA COMPLETO POR Bs 350
         </button>
         <button class="btn btn-secondary" id="waBtn">Prefiero pagar por WhatsApp</button>
       </div>
@@ -474,12 +647,104 @@
     <span>Chatea por WhatsApp</span>
   </a>
 
+  <div class="modal-overlay" id="promoModalOverlay"></div>
+  <div class="modal-content modal-content-promo" id="promoModalContent">
+    <span id="closeModalBtn" class="modal-close">&times;</span>
+    <h3>🎁 ¡Espera! Tenemos un Regalo para Ti</h3>
+    <p>Usa el código <strong>7DBOLIVIA</strong> para desbloquear un descuento exclusivo y llévate el sistema por solo <strong>Bs 35</strong>.</p>
+    <div class="modal-form">
+      <input type="text" id="promoCodeInput" placeholder="Escribe el código aquí" style="text-transform: uppercase;">
+      <button class="btn btn-primary" id="applyCodeBtn">APLICAR CÓDIGO</button>
+    </div>
+    <p id="modalError" class="modal-error-msg" style="display: none;"></p>
+  </div>
+  <div class="modal-overlay" id="planModalOverlay"></div>
+  <div class="modal-content modal-content-plan" id="planModalContent">
+    <span id="closePlanModalBtn" class="modal-close">&times;</span>
+    
+    <div class="modal-actions">
+      <button class="btn-action" id="copyPlanBtn">📋 Copiar Plan</button>
+      <button class="btn-action" id="printPlanBtn">🖨️ Exportar PDF</button>
+    </div>
+    
+    <div id="plan-content-wrapper"> 
+      <h3 style="text-align: center;">🚀 Tu Plan de 7 Días hacia la Venta</h3>
+      <p style="text-align: center; margin-top: -1rem; margin-bottom: 2rem;">Sigue esta estructura probada para lanzar tu negocio en una semana.</p>
+  
+      <div class="plan-dia">
+        <strong>Día 1: Planificación y Compra</strong>
+        <ul>
+          <li>Lee el PDF: Enfócate en la <strong>Receta Base de Pudín Cremoso (Pág. 4)</strong>; es tu secreto.</li>
+          <li>Elige 3-4 sabores para empezar. Te recomendamos los más vendidos: Chocolate Clásica (Pág. 6), Oreo (Pág. 13) y Limón (Pág. 8).</li>
+          <li>Haz tu lista de compras: Ingredientes base (leche, leche condensada, maicena) y los adicionales para tus sabores (chocolate, oreos, limones).</li>
+          <li>Compra tus primeros vasitos y etiquetas (como se menciona en la Pág. 2).</li>
+        </ul>
+      </div>
+  
+      <div class="plan-dia">
+        <strong>Día 2: La Receta Maestra</strong>
+        <ul>
+          <li>Prepara tu <strong>primera Receta Base (Pág. 4)</strong>. Sin sabores, solo la base.</li>
+          <li>Concéntrate en la cocción a fuego medio y en batir constantemente.</li>
+          <li>Practica el truco clave: <strong>cubrir con papel film tocando la superficie</strong> (Pág. 4) para que no se forme costra.</li>
+          <li>Deja enfriar a temperatura ambiente y luego refrigera.</li>
+        </ul>
+      </div>
+      
+      <div class="plan-dia">
+        <strong>Día 3: Producción de Muestras y Fotos</strong>
+        <ul>
+          <li>Con tu base ya fría, divídela en 3-4 porciones.</li>
+          <li>Sigue el "Armado" de cada receta: añade el chocolate derretido a una parte, el limón a otra, etc.</li>
+          <li>Ensambla tus primeras 3-4 marquesas en los vasitos, alternando galleta y pudín.</li>
+          <li>¡Toma fotos! Usa luz natural, muestra las capas y decora como en el recetario.</li>
+        </ul>
+      </div>
+  
+      <div class="plan-dia">
+        <strong>Día 4: Creación de Marca y Promoción</strong>
+        <ul>
+          <li>Define un nombre simple para tu emprendimiento.</li>
+          <li>Publica las fotos en tu Estado de WhatsApp, Instagram y Facebook.</li>
+          <li>Anuncia: "¡NUEVO! Deliciosas Marquesas caseras. Tomando pedidos para el fin de semana. Sabores: Chocolate, Oreo y Limón. ¡Pide la tuya!"</li>
+        </ul>
+      </div>
+      
+      <div class="plan-dia">
+        <strong>Día 5: Tomar Pedidos (Preventa)</strong>
+        <ul>
+          <li>Responde a los mensajes de tus amigos y familia.</li>
+          <li>Lleva un registro claro de los pedidos: cuántos, de qué sabor y para quién.</li>
+          <li>Fija un día de entrega (Ej: "Entregas este sábado"). Esto te permite producir en bloque.</li>
+        </ul>
+      </div>
+      
+      <div class="plan-dia">
+        <strong>Día 6: Producción en Masa</strong>
+        <ul>
+          <li>Con tus pedidos en mano, prepara una tanda grande de la <strong>Receta Base (Pág. 4)</strong>.</li>
+          <li>Divide la base fría en tazones y crea los diferentes sabores que te pidieron.</li>
+          <li>Forma una línea de ensamblaje: vasito, galleta remojada, pudín. Repite.</li>
+          <li>Tapa, etiqueta y refrigera <strong>toda la noche (Pág. 5)</strong>. Este paso es vital para la textura perfecta.</li>
+        </ul>
+      </div>
+  
+      <div class="plan-dia">
+        <strong>Día 7: Entrega, Cobro y Éxito</strong>
+        <ul>
+          <li>Organiza tus entregas o prepárate para que recojan los pedidos.</li>
+          <li>Entrega un producto frío, profesional y delicioso.</li>
+          <li>¡Recibe tus pagos! Has completado el ciclo.</li>
+          <li>Pregunta a tus clientes qué les pareció y prepárate para los pedidos de la próxima semana.</li>
+        </ul>
+      </div>
+    </div> </div>
   <script>
-    /* ===== CONFIGURACIÓN BOLIVIA ===== */
+    /* ===== CONFIGURACIÓN BOLIVIA (NÚMERO ACTUALIZADO) ===== */
     const CONFIG = {
       checkoutUrl: 'https://tu-checkout-en-systeme.io/tu-producto',
-      whatsappNumber: '5917XXXXXXXX', // TU NÚMERO AQUÍ
-      whatsappMessage: 'Hola, quiero comprar el Sistema de Marquesas por Bs 35. Tengo una pregunta antes de pagar.'
+      whatsappNumber: '584128939324', // NÚMERO ACTUALIZADO
+      whatsappMessage: 'Hola, vi la página del Sistema de Marquesas y tengo una pregunta.' // MENSAJE ACTUALIZADO
     };
 
     function trackEvent(eventName, params = {}) {
@@ -501,11 +766,6 @@
       window.location.href = CONFIG.checkoutUrl;
     });
 
-    // Muestra
-    setupButton('previewBtn', () => {
-      alert('Se abrirá una muestra del PDF con las primeras 3 recetas completas.');
-    });
-
     // WhatsApp
     function openWhatsApp() {
       const url = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(CONFIG.whatsappMessage)}`;
@@ -515,6 +775,154 @@
     setupButton('waBtn', openWhatsApp);
     setupButton('waFloat', (e) => { e.preventDefault(); openWhatsApp(); });
 
+    
+    /* ===== LÓGICA DE MODAL PROMOCIONAL ===== */
+    
+    // Elementos del DOM
+    const promoModalOverlay = document.getElementById('promoModalOverlay');
+    const promoModalContent = document.getElementById('promoModalContent');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const applyCodeBtn = document.getElementById('applyCodeBtn');
+    const promoCodeInput = document.getElementById('promoCodeInput');
+    const modalError = document.getElementById('modalError');
+
+    // Elementos de precio a cambiar
+    const scarcityText = document.getElementById('scarcityText');
+    const mainPrice = document.getElementById('mainPrice');
+    const originalPrice = document.getElementById('originalPrice');
+    const finalCtaButton = document.getElementById('buyBtnFinal');
+    const whatYouLoseText = document.getElementById('whatYouLoseText');
+    const buyBtn = document.getElementById('buyBtn'); // Botón de compra superior
+
+    let discountApplied = false;
+
+    function showPromoModal() {
+      if (discountApplied) return; // No mostrar si ya aplicó
+      promoModalOverlay.classList.add('visible');
+      promoModalContent.classList.add('visible');
+    }
+
+    function hidePromoModal() {
+      promoModalOverlay.classList.remove('visible');
+      promoModalContent.classList.remove('visible');
+    }
+
+    function applyDiscount() {
+      const code = promoCodeInput.value.trim().toUpperCase();
+      if (code === '7DBOLIVIA') {
+        discountApplied = true;
+
+        // 1. Cambiar scarcity box
+        scarcityText.innerHTML = `<strong>⏳ ¡CÓDIGO APLICADO!</strong> Solo hoy <strong>Bs 35</strong> en lugar de <del>Bs 350</del>. ¡Aprovecha!`;
+        
+        // 2. Cambiar precio principal
+        mainPrice.innerText = 'Bs 35';
+        originalPrice.innerHTML = '<del>Bs 350</del>';
+        originalPrice.style.display = 'inline'; // Mostrar el precio tachado
+
+        // 3. Cambiar botón CTA superior
+        buyBtn.innerHTML = 'OBTENER SISTEMA CON DESCUENTO AHORA';
+
+        // 4. Cambiar texto de "qué pierdes"
+        whatYouLoseText.innerHTML = `Cada semana sin este sistema son <strong>Bs 1.500-2.000</strong> que dejas de ganar. 
+          La oferta de <strong>Bs 35</strong> desaparece en 24 horas. El precio vuelve a <strong>Bs 350</strong>.`;
+
+        // 5. Cambiar botón CTA final
+        finalCtaButton.innerHTML = 'SÍ, QUIERO EL SISTEMA COMPLETO POR Bs 35';
+        
+        // Opcional: Mostrar éxito y cerrar
+        modalError.style.display = 'none';
+        applyCodeBtn.innerText = '¡APLICADO!';
+        applyCodeBtn.style.background = '#27ae60'; // Verde éxito
+        
+        setTimeout(hidePromoModal, 1500);
+
+      } else {
+        // Mostrar error
+        modalError.innerText = 'Código incorrecto. El código debe ser 7DBOLIVIA.';
+        modalError.style.display = 'block';
+        promoCodeInput.focus();
+      }
+    }
+
+    // --- Disparadores (Modal Promo) ---
+    setTimeout(showPromoModal, 10000);
+    closeModalBtn.addEventListener('click', hidePromoModal);
+    promoModalOverlay.addEventListener('click', hidePromoModal);
+    applyCodeBtn.addEventListener('click', applyDiscount);
+    
+    /* ===== FIN LÓGICA MODAL PROMO ===== */
+
+
+    /* ===== NUEVA LÓGICA: MODAL PLAN 7 DÍAS (ACTUALIZADO) ===== */
+    const planModalOverlay = document.getElementById('planModalOverlay');
+    const planModalContent = document.getElementById('planModalContent');
+    const closePlanModalBtn = document.getElementById('closePlanModalBtn');
+    const copyPlanBtn = document.getElementById('copyPlanBtn'); // Nuevo
+    const printPlanBtn = document.getElementById('printPlanBtn'); // Nuevo
+    
+    function showPlanModal() {
+      planModalOverlay.classList.add('visible');
+      planModalContent.classList.add('visible');
+    }
+    
+    function hidePlanModal() {
+      planModalOverlay.classList.remove('visible');
+      planModalContent.classList.remove('visible');
+    }
+    
+    // --- NUEVAS FUNCIONES DE BOTONES DE ACCIÓN ---
+    function copyPlanToClipboard() {
+      const contentWrapper = document.getElementById('plan-content-wrapper');
+      if (!contentWrapper) return;
+
+      // 1. Extraer el texto de forma estructurada
+      let textToCopy = "";
+      const title = contentWrapper.querySelector('h3').innerText;
+      const subtitle = contentWrapper.querySelector('p').innerText;
+      
+      textToCopy += `${title}\n${subtitle}\n\n`;
+
+      const dias = contentWrapper.querySelectorAll('.plan-dia');
+      dias.forEach(dia => {
+        const diaTitle = dia.querySelector('strong').innerText;
+        textToCopy += `--- ${diaTitle} ---\n`;
+        const items = dia.querySelectorAll('li');
+        items.forEach(item => {
+          textToCopy += `- ${item.innerText}\n`;
+        });
+        textToCopy += '\n';
+      });
+
+      // 2. Usar la API de portapapeles
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        // 3. Confirmación visual
+        const originalText = copyPlanBtn.innerHTML;
+        copyPlanBtn.innerHTML = '✅ ¡Copiado!';
+        setTimeout(() => {
+          copyPlanBtn.innerHTML = originalText;
+        }, 2000);
+      }).catch(err => {
+        console.error('Error al copiar el plan: ', err);
+        alert('No se pudo copiar el plan.');
+      });
+    }
+
+    function printPlan() {
+      window.print();
+    }
+    // --- FIN NUEVAS FUNCIONES ---
+
+    // Disparadores (Modal Plan)
+    setupButton('planBtn', showPlanModal); // Botón "Ver estructura de los 7 días"
+    closePlanModalBtn.addEventListener('click', hidePlanModal);
+    planModalOverlay.addEventListener('click', hidePlanModal);
+    copyPlanBtn.addEventListener('click', copyPlanToClipboard); // Nuevo
+    printPlanBtn.addEventListener('click', printPlan); // Nuevo
+    
+    /* ===== FIN LÓGICA MODAL PLAN ===== */
+    
+
     /* ===== CARRUSEL AUTOMÁTICO ===== */
     const carouselWrapper = document.getElementById('carouselWrapper');
     const carouselNav = document.getElementById('carouselNav');
@@ -523,12 +931,14 @@
     const totalSlides = slides.length;
 
     // Crear dots de navegación
-    for (let i = 0; i < totalSlides; i++) {
-      const dot = document.createElement('div');
-      dot.classList.add('carousel-dot');
-      if (i === 0) dot.classList.add('active');
-      dot.addEventListener('click', () => goToSlide(i));
-      carouselNav.appendChild(dot);
+    if (carouselWrapper && slides.length > 0) {
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('carousel-dot');
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(i));
+        carouselNav.appendChild(dot);
+      }
     }
 
     function goToSlide(slideIndex) {
