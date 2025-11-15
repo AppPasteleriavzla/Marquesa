@@ -479,6 +479,31 @@
       color: var(--primary-dark);
     }
     /* ===== FIN ESTILOS PUENTE ===== */
+
+    /* ===== INICIO: ESTILOS BOTÓN SEGUNDA OPORTUNIDAD ===== */
+    #secondChanceBtn {
+      display: none; /* Oculto por defecto */
+      width: 100%;
+      margin-bottom: 12px;
+      background: var(--bg-soft); /* bg-soft */
+      border-color: var(--primary);
+      color: var(--primary-dark);
+      font-weight: 600;
+      transition: var(--transition);
+      gap: 10px;
+    }
+    #secondChanceBtn strong {
+      color: var(--primary-dark);
+    }
+    #secondChanceBtn:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    #secondChanceBtn:hover strong {
+      color: white;
+    }
+    /* ===== FIN ESTILOS BOTÓN ===== */
   </style>
 </head>
 <body>
@@ -528,6 +553,9 @@
           Acceso inmediato • 7 días de garantía
         </p>
 
+        <button class="btn" id="secondChanceBtn">
+          🎁 ¿Olvidaste algo? Haz clic para activar tu <strong>descuento del 90%</strong>
+        </button>
         <button class="btn btn-primary" id="buyBtn">OBTENER SISTEMA COMPLETO AHORA</button>
         <button class="btn btn-secondary" id="planBtn">Ver estructura de los 7 días</button>
       </div>
@@ -865,6 +893,7 @@
     const applyCodeBtn = document.getElementById('applyCodeBtn');
     const promoCodeInput = document.getElementById('promoCodeInput');
     const modalError = document.getElementById('modalError');
+    const secondChanceBtn = document.getElementById('secondChanceBtn'); // <-- NUEVO
 
     // Elementos de precio a cambiar
     const scarcityText = document.getElementById('scarcityText');
@@ -885,7 +914,24 @@
     function hidePromoModal() {
       promoModalOverlay.classList.remove('visible');
       promoModalContent.classList.remove('visible');
+      
+      // --- INICIO: LÓGICA DE BOTÓN DE SEGUNDA OPORTUNIDAD ---
+      // Si el modal se cierra Y el descuento NO fue aplicado...
+      if (!discountApplied && secondChanceBtn) {
+        secondChanceBtn.style.display = 'inline-flex'; // ¡Mostrar el botón!
+      }
+      // --- FIN: LÓGICA DE BOTÓN ---
     }
+    
+    // --- INICIO: LÓGICA DE CLIC EN BOTÓN DE SEGUNDA OPORTUNIDAD ---
+    if (secondChanceBtn) {
+      secondChanceBtn.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevenir cualquier envío
+        showPromoModal(); // Re-abrir el modal de descuento
+        secondChanceBtn.style.display = 'none'; // Ocultar este botón
+      });
+    }
+    // --- FIN: LÓGICA DE CLIC ---
 
     function applyDiscount() {
       const code = promoCodeInput.value.trim().toUpperCase();
