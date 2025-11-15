@@ -452,6 +452,33 @@
       opacity: 1;
     }
     /* ===== FIN ESTILOS AVISO ===== */
+
+    /* ===== INICIO: ESTILOS PUENTE (RETO vs OFERTA) ===== */
+    .bridge-box {
+      background: rgba(44, 62, 80, 0.04); /* Un gris suave del --text */
+      border: 1px solid rgba(44, 62, 80, 0.1);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin: 32px auto;
+      max-width: 650px; /* Un poco más angosto que el hero-content */
+      text-align: left;
+    }
+    .bridge-box h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--text);
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .bridge-box p {
+      color: var(--text-light);
+      font-size: 1rem;
+      margin-bottom: 0;
+    }
+    .bridge-box strong {
+      color: var(--primary-dark);
+    }
+    /* ===== FIN ESTILOS PUENTE ===== */
   </style>
 </head>
 <body>
@@ -480,6 +507,14 @@
           desde su cocina.
         </p>
 
+        <div class="bridge-box">
+          <h3>Espera, ¿Cuál es la diferencia con el Reto Gratuito?</h3>
+          <p>
+            El <strong>Reto de 7 Días</strong> al que te uniste es perfecto para que veas la <strong>oportunidad</strong>. Te daremos la base.
+            <br><br>
+            Lo que estás viendo en esta página es el <strong>Sistema Premium Completo</strong>. Este es el <strong>acelerador</strong> para quienes van en serio. Incluye las <strong>30 recetas exclusivas</strong> (las que más se venden), el método de producción y el <strong>acompañamiento</strong> paso a paso para asegurar que generes tus primeros Bs 2.640, no solo que hagas un postre.
+          </p>
+        </div>
         <div class="scarcity-box" id="scarcityText">
           <strong>⏳ OFERTA DE LANZAMIENTO EN BOLIVIA:</strong>
           Precio regular <strong>Bs 350</strong>. ¡Busca el código de descuento!
@@ -507,7 +542,7 @@
           <p>Receta Base Maestra + 30 variaciones probadas (Chocolate, Oreo, Tiramisú, Pistacho, Red Velvet...)</p>
         </div>
         <div class="feature fade-in">
-          <strong>SIN HORNO, SIN EXPERIENCIA</strong>
+          <strong>SIN HORNO, SIN EXPERIENCA</strong>
           <p>Todas las recetas usan el mismo método. Solo ensamblas, refrigeras y vende.</p>
         </div>
         <div class="feature fade-in">
