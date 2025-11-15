@@ -410,9 +410,61 @@
         color: #000;
       }
     }
+    
+    /* ===== ESTILOS AVISO REGISTRO FB ===== */
+    .fb-notice-banner {
+      background-color: #d4edda; /* Verde de éxito */
+      color: #155724; /* Texto verde oscuro */
+      border-bottom: 1px solid #c3e6cb;
+      padding: 24px;
+      text-align: center;
+      position: relative; /* 'relative' para que fluya con la página */
+      font-weight: 500;
+      font-size: 1.1rem;
+      line-height: 1.5;
+      width: 100%;
+    }
+    .fb-notice-banner .icon {
+      font-size: 2.5rem; /* Icono grande */
+      display: block;
+      margin-bottom: 10px;
+    }
+    .fb-notice-banner strong {
+      color: #155724;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .fb-notice-banner .close-notice {
+      position: absolute;
+      top: 12px;
+      right: 20px;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #155724;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+      line-height: 1;
+    }
+    .fb-notice-banner .close-notice:hover {
+      opacity: 1;
+    }
+    /* ===== FIN ESTILOS AVISO ===== */
   </style>
 </head>
 <body>
+
+  <div id="fb-lead-notice" class="fb-notice-banner">
+    <span class="close-notice" id="closeNoticeBtn">&times;</span>
+    <span class="icon">📩</span>
+    <strong>¡Te has registrado correctamente!</strong>
+    <p style="margin-bottom: 0; color: inherit;">
+      Te has registrado al **Reto de 7 Días** para realizar tus primeros postres en vasos.
+      ¡Ya te contactaré por WhatsApp!
+    </p>
+  </div>
   <header>
     <div class="container">
       <div class="logo">Recetario Premium Bolivia</div>
@@ -971,6 +1023,21 @@
     document.querySelectorAll('.feature, .card, .testimonial, .carousel-container').forEach(el => {
       scrollObserver.observe(el);
     });
+
+    /* ===== LÓGICA BANNER AVISO FB ===== */
+    try {
+      const fbNoticeBanner = document.getElementById('fb-lead-notice');
+      const closeNoticeBtn = document.getElementById('closeNoticeBtn');
+      
+      if (fbNoticeBanner && closeNoticeBtn) {
+        closeNoticeBtn.addEventListener('click', () => {
+          fbNoticeBanner.style.display = 'none';
+        });
+      }
+    } catch (e) {
+      console.error('Error in FB notice banner script:', e);
+    }
+    /* ===== FIN LÓGICA BANNER ===== */
   </script>
 </body>
 </html>
